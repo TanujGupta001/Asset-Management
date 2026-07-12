@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { Upload, Download, FileSpreadsheet, CheckCircle2, AlertCircle, FileUp } from 'lucide-react';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
+import { loadXLSX } from '@/lib/xlsx';
 
 interface ImportSummary {
   assetsAdded: number;
@@ -42,7 +43,7 @@ export function ImportExportClient() {
   const handleExport = async () => {
     toast.info('Generating export...', { description: 'Building workbook with all sheets' });
 
-    const XLSX = await import('xlsx');
+    const XLSX = await loadXLSX();
     const { supabase } = await import('@/lib/supabase');
 
     const [assets, departments, movements, transfers, licenses, inventory, telephones, printers] = await Promise.all([
@@ -147,7 +148,7 @@ export function ImportExportClient() {
     setSummary(null);
 
     try {
-      const XLSX = await import('xlsx');
+      const XLSX = await loadXLSX();
       const { supabase } = await import('@/lib/supabase');
       const buffer = await file.arrayBuffer();
       const wb = XLSX.read(buffer, { type: 'array' });
