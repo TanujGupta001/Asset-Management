@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactComiler: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -10,9 +9,8 @@ const nextConfig = {
   images: { unoptimized: true },
   experimental: {
     serverActions: true,
-    turbopackFileSystemCacheForDev: true,
   },
-
+  transpilePackages: ['xlsx'],
 };
 
 module.exports = nextConfig;
