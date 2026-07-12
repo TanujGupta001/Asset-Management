@@ -10,7 +10,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-
+  swcMinify: false,
 };
 
 module.exports = nextConfig;
